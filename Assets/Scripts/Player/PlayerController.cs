@@ -43,11 +43,9 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context){
         if(context.phase == InputActionPhase.Performed){
-            Debug.Log("누름");
             curMovementInput = context.ReadValue<Vector2>();
         }
         else if(context.phase == InputActionPhase.Canceled){
-            Debug.Log("안눌림");
             curMovementInput = Vector2.zero;
         }
     }
