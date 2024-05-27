@@ -1854,6 +1854,7 @@ MonoBehaviour:
   slots: []
   inventoryWindow: {fileID: 662427556}
   slotPanel: {fileID: 982458817}
+  dropPosition: {fileID: 0}
   selectedItemName: {fileID: 1711295740}
   selectedItemDescription: {fileID: 853976830}
   selectedStatName: {fileID: 160867761}
@@ -2287,6 +2288,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 163893676}
+  - {fileID: 1915007626}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &822954211
@@ -2376,6 +2378,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   condition: {fileID: 0}
   itemData: {fileID: 0}
+  dropPosition: {fileID: 1915007626}
 --- !u!114 &822954215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3118,7 +3121,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 120}
-  m_Spacing: {x: 15, y: 0}
+  m_Spacing: {x: 15, y: 15}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &984115327
@@ -3203,7 +3206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 984115330}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 662427558}
+        m_TargetAssemblyTypeName: UIInventory, Assembly-CSharp
+        m_MethodName: OnDropButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &984115330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4613,7 +4628,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1673985671}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 662427558}
+        m_TargetAssemblyTypeName: UIInventory, Assembly-CSharp
+        m_MethodName: OnUseButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1673985671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5435,6 +5462,37 @@ Transform:
   - {fileID: 662427557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1915007625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1915007626}
+  m_Layer: 3
+  m_Name: dropPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1915007626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915007625}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.203, z: 0.373}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 822954210}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2007459641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5840,15 +5898,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 34558779414816892, guid: c97c3db1987be704d872ea5ca5e5f156, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.47
       objectReference: {fileID: 0}
     - target: {fileID: 34558779414816892, guid: c97c3db1987be704d872ea5ca5e5f156, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 34558779414816892, guid: c97c3db1987be704d872ea5ca5e5f156, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.42
       objectReference: {fileID: 0}
     - target: {fileID: 34558779414816892, guid: c97c3db1987be704d872ea5ca5e5f156, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5876,6 +5934,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 34558779414816892, guid: c97c3db1987be704d872ea5ca5e5f156, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333347137483532552, guid: c97c3db1987be704d872ea5ca5e5f156, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7210187117280636170, guid: c97c3db1987be704d872ea5ca5e5f156, type: 3}
