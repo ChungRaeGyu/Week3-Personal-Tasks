@@ -30,7 +30,6 @@ public class DayLightCycle : MonoBehaviour
     {
         timeRate = 1.0f/fullDayLength;
         time = startTime;
-        Debug.Log($"noon = {noon} , noon*0.25 = {noon*0.25f}");
     }
 
     // Update is called once per frame
@@ -40,7 +39,7 @@ public class DayLightCycle : MonoBehaviour
         UpdateLighting(sun,sunColor,sunIntensity);
         UpdateLighting(moon, moonColor, moonIntensity);
         RenderSettings.ambientIntensity = lightingIntensityMultiplier.Evaluate(time);
-
+        RenderSettings.reflectionIntensity = reflectionIntensityMultiplier.Evaluate(time);
     }
 
 

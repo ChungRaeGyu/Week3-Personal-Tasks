@@ -40,7 +40,7 @@ public class PlayerCondition : MonoBehaviour, IDamaged
     }
     private void Die()
     {
-        Debug.Log("죽음");
+        
     }
 
     public void TakePhysicalDamage(int damage)
