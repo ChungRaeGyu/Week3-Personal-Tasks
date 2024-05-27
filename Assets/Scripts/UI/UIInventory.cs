@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class UIInventory : MonoBehaviour
 {
@@ -9,6 +12,7 @@ public class UIInventory : MonoBehaviour
     
     public GameObject inventoryWindow;
     public Transform slotPanel;
+    public Transform dropPosition;
 
     [Header("Select Item")]
     public TextMeshProUGUI selectedItemName;
@@ -27,9 +31,10 @@ public class UIInventory : MonoBehaviour
     {
         controller = CharacterManager.Instance.Player.controller;
         condition = CharacterManager.Instance.Player.condition;
-
+        dropPosition = CharacterManager.Instance.Player.dropPosition;
         controller.inventory +=Toggle;
-        
+        CharacterManager.Instance.Player.addItem+=AddItem;
+
         inventoryWindow.SetActive(false);   
         slots = new ItemSlot[slotPanel.childCount];
 
@@ -39,12 +44,6 @@ public class UIInventory : MonoBehaviour
             slots[i].inventory = this;
         }
         ClearSelectedItemWindow();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void ClearSelectedItemWindow(){
@@ -70,5 +69,68 @@ public class UIInventory : MonoBehaviour
 
     public bool IsOpen(){
         return inventoryWindow.activeInHierarchy;
+    }
+
+    void AddItem(){
+        ItemData data = CharacterManager.Instance.Player.itemData;
+
+        if (data.cansStack){
+            ItemSlot slot = GetItemStack(data);
+            if(slot!=null){
+                slot.quantity++;
+                UpdateUI();
+                CharacterManager.Instance.Player.itemData=null;
+                return;
+            }
+        }
+
+        ItemSlot emptySlot = GetEmptySlot();
+
+        if(emptySlot!=null){
+            emptySlot.item=data;
+            emptySlot.quantity=1;
+            UpdateUI();
+            CharacterManager.Instance.Player.itemData = null;
+            return;
+        }
+
+        ThrowItem(data);
+        CharacterManager.Instance.Player.itemData=null;
+    }
+
+    private void UpdateUI()
+    {
+        foreach (ItemSlot slot in slots)
+        {
+            if (slot.item != null)
+            {
+                slot.Set();
+            }
+            else
+            {
+                slot.Clear();
+            }
+        }
+    }
+
+    private ItemSlot GetItemStack(ItemData data)
+    {
+        for(int i=0; i<slots.Length ; i++){
+            if(slots[i].item == data && slots[i].quantity<data.maxStackAmount){
+                return slots[i];
+            }
+        }
+        return null;
+    }
+    ItemSlot GetEmptySlot(){
+        for(int i=0; i<slots.Length; i++){
+            if(slots[i].item ==null){
+                return slots[i];
+            }
+        }
+        return null;
+    }
+    void ThrowItem(ItemData data){
+        Instantiate(data.dropPrefab,dropPosition.position,Quaternion.Euler(Vector3.one*Random.value*360));
     }
 }
