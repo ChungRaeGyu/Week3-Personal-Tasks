@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7762039739130506220}
-  - component: {fileID: -191573906066748540}
   - component: {fileID: -4469829653079458150}
   - component: {fileID: -3923244224894399953}
   m_Layer: 7
@@ -35,18 +34,6 @@ Transform:
   - {fileID: 7691857860166574894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 25.33, y: -49.67, z: 0}
---- !u!114 &-191573906066748540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3239759479767250348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c00d44664075ef4db589a6a3e049148, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-4469829653079458150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRate: 0.8
   attackDistance: 10
+  useStamina: 15
   doesGatherResources: 0
   doesDealDamage: 0
   damage: 0
